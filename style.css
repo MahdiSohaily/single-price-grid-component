@@ -1,97 +1,224 @@
 :root {
-  font-family: Inter, Avenir, Helvetica, Arial, sans-serif;
-  font-size: 16px;
-  line-height: 24px;
-  font-weight: 400;
+  --light-cyan: #4ABEBD;
+  --cyan: #2BB3B1;
+  --bright-yellow: hsl(71, 73%, 54%);
+  --light-gray: hsl(204, 43%, 93%);
+  --grayish-blue: hsl(218, 22%, 67%);
 
-  color-scheme: light dark;
-  color: rgba(255, 255, 255, 0.87);
-  background-color: #242424;
+  --font-family: "Kumbh Sans", sans-serif;
+  --fw-400: 400;
+  --fw-700: 700;
 
-  font-synthesis: none;
-  text-rendering: optimizeLegibility;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  -webkit-text-size-adjust: 100%;
+  --font-size: 1em;
+
+  --size-50: 0.25em;
+  --size-100: 0.5em;
+  --size-150: 0.80em;
+  --size-200: 1em;
+  --size-250:1.5em;
+  --size-300: 2em;
+  --size-400: 2.5em;
+  --size-500: 3.5em;
+  --size-600: 4em;
+  --size-700: 5em;
+  --size-800: 5.5em;
+  --size-900: 7em;
+  --size-xl: 9em;
 }
 
-a {
-  font-weight: 500;
-  color: #646cff;
-  text-decoration: inherit;
-}
-a:hover {
-  color: #535bf2;
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
 }
 
-body {
+/* Remove default margin */
+*{
   margin: 0;
-  display: flex;
-  place-items: center;
-  min-width: 320px;
+  padding: 0;
+  font-family: var(--font-family);
+  font-size: var(--font-size);
+}
+
+/* Remove list styles on ul, ol elements with a list role, which suggests default styling will be removed */
+ul[role='list'],
+ol[role='list'] {
+  list-style: none;
+}
+
+/* Set core root defaults */
+html:focus-within {
+  scroll-behavior: smooth;
+}
+
+/* Set core body defaults */
+body {
   min-height: 100vh;
+  text-rendering: optimizeSpeed;
+  line-height: 1.5;
 }
 
-h1 {
-  font-size: 3.2em;
-  line-height: 1.1;
+/* A elements that don't have a class get default styles */
+a:not([class]) {
+  text-decoration-skip-ink: auto;
 }
 
-#app {
-  max-width: 1280px;
-  margin: 0 auto;
-  padding: 2rem;
-  text-align: center;
+/* Make images easier to work with */
+img,
+picture {
+  max-width: 100%;
+  display: block;
 }
 
-.logo {
-  height: 6em;
-  padding: 1.5em;
-  will-change: filter;
+/* Inherit fonts for inputs and buttons */
+input,
+button,
+textarea,
+select {
+  font: inherit;
 }
-.logo:hover {
-  filter: drop-shadow(0 0 2em #646cffaa);
+
+/* Remove all animations, transitions and smooth scroll for people that prefer not to see them */
+@media (prefers-reduced-motion: reduce) {
+  html:focus-within {
+   scroll-behavior: auto;
+  }
+  
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
 }
-.logo.vanilla:hover {
-  filter: drop-shadow(0 0 2em #f7df1eaa);
+
+/* general styling */
+
+main{
+  min-height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: var(--light-gray);
 }
+.primary-header{
+  font-size: var(--size-250);
+  color: var(--cyan);
+  padding-bottom: var(--size-200);
+  letter-spacing: 0.01em;
+  line-height: 1;
+}
+.secondary-header{
+  font-size: 1.1em;
+  padding-bottom: var(--size-100);
+}
+
+.text-large{
+  font-size:var(--size-300);
+}
+.text-yellow {
+  color: var(--bright-yellow);
+}
+
+.text-white{
+  color: white;
+}
+
+.text-light-gray {
+  color: var(--light-gray);
+}
+
+.paragraph{
+  color: var(--grayish-blue);
+  font-weight: var(--fw-400);
+}
+
+.bg-yellow {
+  background-color: var(--bright-yellow);
+}
+
+
+.pb-300 {
+  padding-bottom: var(--size-200);
+}
+.pb-400 {
+  padding-bottom: var(--size-400);
+}
+
+.tag {
+  font-size: var(--size-100);
+  font-weight: var(--fw-400);
+  padding-left: var(--size-150);
+  vertical-align: middle;
+}
+
+/* component style */
 
 .card {
-  padding: 2em;
+  display: grid;
+  grid-template-areas: 
+  'header '
+  'price'
+  'service';
+  border-radius: var(--size-100);
+  overflow: hidden;
+  width: 100%;
+  max-width: min(670px, 90%);
+  box-shadow: 0 5px 15px -2px gray;
 }
 
-.read-the-docs {
-  color: #888;
+@media screen and (min-width:40em) {
+  
+  .card {
+    display: grid;
+    grid-template-areas: 
+    'header header'
+    'price service';
+    border-radius: var(--size-100);
+    overflow: hidden;
+    width: 100%;
+    max-width: min(670px, 90%);
+  }
 }
 
-button {
-  border-radius: 8px;
-  border: 1px solid transparent;
-  padding: 0.6em 1.2em;
-  font-size: 1em;
-  font-weight: 500;
-  font-family: inherit;
-  background-color: #1a1a1a;
-  cursor: pointer;
-  transition: border-color 0.25s;
-}
-button:hover {
-  border-color: #646cff;
-}
-button:focus,
-button:focus-visible {
-  outline: 4px auto -webkit-focus-ring-color;
+header {
+  grid-area: header;
+  background-color: white;
+  padding-block: var(--size-300);
+  padding-inline: var(--size-400);
 }
 
-@media (prefers-color-scheme: light) {
-  :root {
-    color: #213547;
-    background-color: #ffffff;
-  }
-  a:hover {
-    color: #747bff;
-  }
-  button {
-    background-color: #f9f9f9;
-  }
+.intro{
+  color: var(--bright-yellow);
+  font-size: var(--size-300);
+}
+
+.subscription{
+  grid-area: price;
+  padding: var(--size-400);
+  background-color: var(--cyan);
+}
+
+.btn {
+  border: none;
+  border-radius: var(--size-50);
+  padding: var(--size-150);
+  width: 100%;
+  font-weight: var(--fw-700);
+  box-shadow: 0 5px 20px -2px gray;
+}
+
+.why_us {
+  grid-area: service;
+  padding: var(--size-400);
+  background-color: var(--light-cyan);
+}
+
+.service-list {
+  list-style-type: none;
+  font-size: 14px;
+  letter-spacing: 0.08em;
+  line-height: 1.6;
 }
